@@ -1,8 +1,9 @@
-bus=Scheduler(busFreq,errRate);
-bus.addMessages(messageSet);
-isSchedulable = bus.attemptSchedule();
+bus = Scheduler(busFreq,errRate);
+bus = addMessages(bus,messageSet);
+bus = attemptSchedule(bus);
+isSchedulable = bus.State == SchedStatus.Schedulable;
 
-if isSchedulable
+if isSchedulable 
     disp('Bus is Schedulable');
     util = sum( [bus.Assigned.Cm]./[bus.Assigned.Tm] );
     solution = bus.Assigned;
@@ -23,3 +24,6 @@ else
     util=0;
     solution=[];
 end
+
+
+
